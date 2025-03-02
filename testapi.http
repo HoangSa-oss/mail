@@ -1,0 +1,8 @@
+
+###
+POST http://localhost:5000/graphql HTTP/1.1
+content-type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDAzOTI3NzcsImV4cCI6MTc0MDQ3ODc3Nn0.m_6Jn68aUVP9ndjSOYuwSEUDJUv284qnii11jL80jKg"
+}
