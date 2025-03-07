@@ -3,7 +3,7 @@ import { applyMiddleware } from 'graphql-middleware';
 import permission from '../rule/acl'
 import { gql } from 'apollo-server-express';
 import { SHARED_STATUS,DOMAIN_TYPE,GROUP_ALERT_TYPE } from '../config/constant'
-import emailGroup from './emailGroup'
+import emailGroup from './email'
 import emailTemplate from './emailTemplate'
 
 const initTypeDefs = gql`

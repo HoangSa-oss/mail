@@ -1,3 +1,9 @@
+export const QUEUE_STATUS = {
+    CREATED: 'created',
+    PUSHED: 'pushed',
+    SENT: 'sent',
+    DELETED: 'deleted'
+  };
 export const DOMAIN_TYPE = {
     RADAA: 'radaa',
     KOMPA: 'kompa',

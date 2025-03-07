@@ -3,7 +3,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import express from 'express';
 import cors from 'cors';
 import { json } from 'body-parser';
-import emailGroup from './graphql/emailGroup';
+import emailGroup from './graphql/email';
 import generateDataSource from './datasource/index'
 import { buildFederatedSchema, buildSubgraphSchema } from '@apollo/federation';
 import { applyMiddleware } from 'graphql-middleware';

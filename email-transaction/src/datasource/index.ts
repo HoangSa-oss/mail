@@ -1,5 +1,4 @@
-import Email from './emailGroup/index'
-import Teamplate from './emailTemplate/index'
+import Email from './email/index'
 // import Project from './templateGroup/index'
-const mongoDataSource = {Email,Teamplate}
+const mongoDataSource = {Email}
 export default mongoDataSource
