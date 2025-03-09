@@ -3,10 +3,11 @@ import { gql } from 'apollo-server-express';
 export const typeDefs = gql`
     scalar Date
     type Query {
-    
+        emailGroupById(_id:ID!):ResultEmailGroup
+        emailGroupByIds(_id:[ID!]!):ResultEmailGroupList
     }
     type Mutation {
-        sendEmailMessage(input: SendEmailMessageInput!): ResultEmailMessagePayload
+        sendEmail(input: SendEmailMessageInput!): ResultEmailMessagePayload
     }
     input SendEmailMessageInput {
         domain: DomainType
@@ -28,35 +29,13 @@ export const typeDefs = gql`
         message: String
         data: EmailMessage
     }
-    type EmailMessage @key(fields: "_id") {
-        _id: ID!
-        domain: DomainType!
-        projectId: ID
-        type: TypeToSend
-        topicIds: [ID]
-        groupIds: [ID]
-        urlAttachment: String
-        status: QueueStatus
-        html: String
-        text: String
-        subject: String
-        fromEmail: String!
-        fromName: String
-        recipientIds: [ID]
-        sentStatus: SendStatus
-        sentMessage: String
-        createdBy: String
-        createdAt: Date
-        updatedAt: Date
-        linkPreview: String
-    }
-    extend type EmailMessage {
+    type EmailMessage {
         recipients: [Recipient!]
         emailGroups: [EmailGroup]
     }
 
 `
-// extend type EmailMessage {
+// type EmailMessage {
 //     recipients: [Recipient!]
 //     emailGroups: [EmailGroup]
 //     sender: User
