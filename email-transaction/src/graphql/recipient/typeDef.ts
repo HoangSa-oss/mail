@@ -7,7 +7,7 @@ export const typeDefs = gql`
         emailGroupByIds(_id:[ID!]!):ResultEmailGroupList
     }
     type Mutation {
-        sendEmail(input: SendEmailMessageInput!): ResultEmailMessagePayload
+        sendEmailMessage(input: SendEmailMessageInput!): ResultEmailMessagePayload
     }
     input SendEmailMessageInput {
         domain: DomainType

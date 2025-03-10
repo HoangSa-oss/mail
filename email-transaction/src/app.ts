@@ -11,6 +11,7 @@ import  Logger from './external-libs/logger'
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
 import permission from './rule/acl'
 import schema from  './graphql'
+import {createRabbitChannel} from './external-libs/rabittmq'
 // import permission from './auth/acl'
 // A map of functions which return data for the schema.
 
@@ -31,6 +32,7 @@ const server = new ApolloServer({
   }
 );
 const startServer = async()=>{
+  const Channel = await createRabbitChannel({})
   await server.start();
   app.use(
     '/graphql',
@@ -42,6 +44,7 @@ const startServer = async()=>{
         return {
          token: token,  
          dataSource:dataSource,
+         Channel
         }
       }      
     }),
