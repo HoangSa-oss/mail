@@ -1,7 +1,7 @@
-import { MongoDataSource } from 'apollo-datasource-mongodb'
+import { MongoDataSource } from '../mongo'
 import { IKeyword} from "../../config/constant"
 
-export class ModelDataSource extends MongoDataSource<any>{
+export class ModelDataSource extends MongoDataSource{
     constructor(options:any){
         super(options)
     }

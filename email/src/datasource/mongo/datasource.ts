@@ -1,7 +1,34 @@
-// import { MongoDataSource } from 'apollo-datasource-mongodb'
+import { GraphQLError } from 'graphql'
+import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
 
-// export class MongoDBDataSource extends MongoDataSource<any>{
-//     constructor(options:any){
-//         super(options)
-//     }
-// }
+import { createCachingMethods } from './cache'
+import { isCollectionOrModel, isModel } from './helpers'
+
+class MongoDataSource {
+  model: any
+  collection: any
+  constructor({ modelOrCollection, cache }:any) {
+    if (!isCollectionOrModel(modelOrCollection)) {
+      throw new GraphQLError(
+        'MongoDataSource constructor must be given a collection or Mongoose model'
+      )
+    }
+
+    if (isModel(modelOrCollection)) {
+      this.model = modelOrCollection
+      this.collection = this.model.collection
+    } else {
+      this.collection = modelOrCollection
+    }
+
+    const methods = createCachingMethods({
+      collection: this.collection,
+      model: this.model,
+      cache: cache || new InMemoryLRUCache()
+    })
+
+    Object.assign(this, methods)
+  }
+}
+
+export { MongoDataSource }
